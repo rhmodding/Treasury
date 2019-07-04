@@ -67,7 +67,7 @@ enum class GoalType(val n: Byte) {
 
 data class TreasureGame(var id: Short, var unkPercentage: Byte) {
 	companion object {
-		val GAMENAMES: List<String> = Gson().fromJson(File("./gamenames.json").readText())
+		val GAMENAMES: List<String> = Gson().fromJson(File("gamenames.json").readText())
 	}
 
 	override fun toString(): String {

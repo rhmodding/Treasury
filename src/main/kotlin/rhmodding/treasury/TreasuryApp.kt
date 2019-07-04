@@ -12,7 +12,7 @@ import java.io.File
 
 class TreasuryApp : App(TreasuryView::class)
 
-class TreasuryView : View("Treasury") {
+class TreasuryView : View("Treasury v1.1.0") {
 	override val root = VBox()
 	var path: String = "/"
 
