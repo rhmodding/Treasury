@@ -42,7 +42,7 @@ compileTestKotlin {
 }
 
 shadowJar {
-    baseName = "Treasury"
+    baseName = "treasury"
     classifier = null
     version = null
     manifest {
