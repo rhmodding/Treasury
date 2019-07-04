@@ -49,7 +49,11 @@ class TreasuryView : View("Treasury v1.1.0") {
 		currentWorld = treasureData?.worlds?.get(worldList.indexOf(it))
 		courseList.removeAll { true }
 		courseList.addAll(currentWorld?.courses?: listOf())
-		updateCourse(courseList[0])
+		if (courseList.isEmpty()) {
+			throw IllegalStateException("Open the directory with the extracted contents of treasure_world_data.zlib first.")
+		} else {
+			updateCourse(courseList[0])
+		}
 	}
 
 	fun updateCourse(it: TreasureCourse) {
@@ -89,14 +93,14 @@ class TreasuryView : View("Treasury v1.1.0") {
 						item("Open...") {
 							action {
 								val dirChooser = DirectoryChooser()
-								dirChooser.title = "Choose a directory contining the contents of treasure_world_data.zlib"
+								dirChooser.title = "Choose a directory containing the contents of treasure_world_data.zlib"
 								dirChooser.initialDirectory = File(path)
 
 								val f = dirChooser.showDialog(null)
 								if (f != null) {
 									path = f.parent
 									val courses = mutableListOf<TreasureCourse>()
-									f.listFiles({ _, name -> name.startsWith("world_data_") }).mapTo(courses) { TreasureCourse(it) }
+									f.listFiles { _, name -> name.startsWith("world_data_") }.mapTo(courses) { TreasureCourse(it) }
 									courses.sortBy { it.id }
 									val l = f.listFiles { _, name -> name.startsWith("course_data.bin") }
 									if (l.isNotEmpty()) {
