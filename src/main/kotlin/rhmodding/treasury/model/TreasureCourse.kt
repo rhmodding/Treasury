@@ -11,7 +11,7 @@ import kotlin.experimental.and
 
 class TreasureCourse(file: File) {
 	companion object {
-		val COURSENAMES: List<String> = Gson().fromJson(File("coursenames.json").readText())
+		val COURSENAMES: List<String> = Gson().fromJson(this::class.java.classLoader.getResourceAsStream("coursenames.json").readBytes().toString(Charsets.UTF_8))
 	}
 	var id: Short
 	var superHard: Boolean
