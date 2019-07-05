@@ -10,9 +10,11 @@ import rhmodding.treasury.model.*
 import tornadofx.*
 import java.io.File
 
+val VERSION: Version = Version(1, 1, 0)
+
 class TreasuryApp : App(TreasuryView::class)
 
-class TreasuryView : View("Treasury v1.1.0") {
+class TreasuryView : View("Treasury $VERSION") {
 	override val root = VBox()
 	var path: String = "/"
 
