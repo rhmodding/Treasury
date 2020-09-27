@@ -1,0 +1,41 @@
+.vbox {
+    -fx-spacing: 0.25em;
+    -fx-padding: 0.25em;
+}
+
+.hbox {
+    -fx-spacing: 0.33333em;
+}
+
+.hbox-centred {
+    -fx-alignment: center-left;
+}
+
+.spinner {
+    -fx-pref-width: 10.0em;
+}
+
+.long-spinner {
+    -fx-pref-width: 16.0em;
+}
+
+.short-spinner {
+    -fx-pref-width: 7.0em;
+}
+
+.very-short-spinner {
+    -fx-pref-width: 5.0em;
+}
+
+.header {
+    -fx-underline: true;
+}
+
+.titled-pane {
+    -fx-max-width: infinity;
+}
+
+.grid-pane {
+    -fx-hgap: 0.25em;
+    -fx-vgap: 0.25em;
+}

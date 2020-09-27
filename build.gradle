@@ -3,6 +3,7 @@ version '1.0-SNAPSHOT'
 
 buildscript {
     ext.kotlin_version = '1.4.10'
+    ext.jackson_version = '2.11.2'
 
     repositories {
         mavenCentral()
@@ -30,6 +31,7 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jackson_version}"
     implementation "no.tornado:tornadofx:1.7.20"
 }
 

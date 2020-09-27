@@ -1,0 +1,26 @@
+@font-face {
+    src: url("../font/Roboto-Regular.ttf");
+}
+@font-face {
+    src: url("../font/Roboto-Italic.ttf");
+}
+@font-face {
+    src: url("../font/Roboto-Bold.ttf");
+}
+@font-face {
+    src: url("../font/Roboto-BoldItalic.ttf");
+}
+
+.root {
+    -fx-font: normal 12pt "Roboto";
+    -fx-base: white;
+    /*-fx-base: rgba(38, 38, 38, 255);*/
+}
+
+.monospaced {
+    -fx-font-family: "Monospaced";
+}
+
+.button {
+    -fx-font-size: 1em;
+}
