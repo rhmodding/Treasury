@@ -62,7 +62,7 @@ enum class GoalType(val n: Byte) {
     Monster(2);
 
     companion object {
-        private val map = GoalType.values().associateBy(GoalType::n);
+        private val map = GoalType.values().associateBy(GoalType::n)
         fun fromByte(type: Byte) = map[type]
     }
 }
