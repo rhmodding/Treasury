@@ -1,8 +1,7 @@
 package rhmodding.treasury.model
 
-import com.github.salomonbrys.kotson.fromJson
 import com.google.gson.Gson
-import java.io.File
+import com.google.gson.reflect.TypeToken
 import java.nio.ByteBuffer
 import kotlin.experimental.and
 
@@ -67,7 +66,7 @@ enum class GoalType(val n: Byte) {
 
 data class TreasureGame(var id: Short, var unkPercentage: Byte) {
 	companion object {
-		val GAMENAMES: List<String> = Gson().fromJson(this::class.java.classLoader.getResourceAsStream("gamenames.json").readBytes().toString(Charsets.UTF_8))
+		val GAMENAMES: List<String> = Gson().fromJson(this::class.java.classLoader.getResourceAsStream("gamenames.json")?.readBytes()?.toString(Charsets.UTF_8), object : TypeToken<List<String>>() {}.type)
 	}
 
 	override fun toString(): String {

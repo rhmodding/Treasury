@@ -1,7 +1,7 @@
 package rhmodding.treasury.model
 
-import com.github.salomonbrys.kotson.fromJson
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.io.File
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -10,9 +10,11 @@ import java.nio.file.Paths
 import kotlin.experimental.and
 
 class TreasureCourse(file: File) {
+	
 	companion object {
-		val COURSENAMES: List<String> = Gson().fromJson(this::class.java.classLoader.getResourceAsStream("coursenames.json").readBytes().toString(Charsets.UTF_8))
+		val COURSENAMES: List<String> = Gson().fromJson(this::class.java.classLoader.getResourceAsStream("coursenames.json")?.readBytes()?.toString(Charsets.UTF_8), object : TypeToken<List<String>>() {}.type)
 	}
+	
 	var id: Short
 	var superHard: Boolean
 	var flowBalls: Byte

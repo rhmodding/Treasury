@@ -10,7 +10,7 @@ import rhmodding.treasury.model.*
 import tornadofx.*
 import java.io.File
 
-val VERSION: Version = Version(1, 1, 0)
+val VERSION: Version = Version(1, 1, 1, "DEVELOPMENT")
 
 class TreasuryApp : App(TreasuryView::class)
 
