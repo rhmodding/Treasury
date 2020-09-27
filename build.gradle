@@ -46,6 +46,6 @@ shadowJar {
     classifier = null
     version = null
     manifest {
-        attributes "Main-Class": "rhmodding.treasury.TreasuryApp"
+        attributes "Main-Class": "rhmodding.treasury.Treasury"
     }
 }
