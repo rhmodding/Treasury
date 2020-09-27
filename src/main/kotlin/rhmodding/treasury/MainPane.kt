@@ -13,7 +13,6 @@ import javafx.scene.text.Text
 import javafx.scene.text.TextAlignment
 import javafx.scene.text.TextFlow
 import javafx.stage.DirectoryChooser
-import javafx.stage.Stage
 import rhmodding.treasury.model.TreasureCourse
 import rhmodding.treasury.model.TreasureData
 import java.io.File
@@ -39,7 +38,7 @@ class MainPane(val app: Treasury) : BorderPane() {
                 setOnAction {
                     val dirChooser = DirectoryChooser()
                     dirChooser.title = "Choose a directory containing the contents of treasure_world_data.zlib"
-                    dirChooser.initialDirectory = File(app.settings.zlibDirectory.get())
+                    dirChooser.initialDirectory = File(app.settings.openZlibDirectory.get())
 
                     val f = dirChooser.showDialog(null)
                     if (f != null) {
@@ -57,7 +56,7 @@ class MainPane(val app: Treasury) : BorderPane() {
                             val newPane = EditorPane(app, treasureData)
                             editor.set(newPane)
                             centrePane.children.add(newPane)
-                            app.settings.zlibDirectory.set(path)
+                            app.settings.openZlibDirectory.set(path)
                         } else {
                             Alert(Alert.AlertType.ERROR).apply { 
                                 title = "Invalid directory"
@@ -72,7 +71,28 @@ class MainPane(val app: Treasury) : BorderPane() {
             this.items += MenuItem("Save changes to a directory").apply {
                 accelerator = KeyCombination.keyCombination("Shortcut+S")
                 disableProperty().bind(editor.isNull)
-                
+                setOnAction {
+                    val treasureData: TreasureData? = editor.get()?.treasureData
+                    if (treasureData != null) {
+                        val dirChooser = DirectoryChooser()
+                        dirChooser.title = "Choose a directory to save your changes in"
+                        dirChooser.initialDirectory = File(app.settings.saveZlibDirectory.get())
+
+                        val f = dirChooser.showDialog(null)
+                        if (f != null) {
+                            val path = f.parent
+                            val courseDataFile = File(f, "course_data.bin")
+                            courseDataFile.writeBytes(treasureData.toBytes().toByteArray())
+                            for (w in treasureData.worlds) {
+                                for (c in w.courses) {
+                                    val worldDataFile = File(f, "world_data_${c.id}.bin")
+                                    worldDataFile.writeBytes(c.toBytes().toByteArray())
+                                }
+                            }
+                            app.settings.saveZlibDirectory.set(path)
+                        }
+                    }
+                }
             }
         }
         

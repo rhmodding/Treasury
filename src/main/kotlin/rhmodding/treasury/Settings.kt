@@ -12,7 +12,8 @@ class Settings(val app: Treasury) {
     val prefsFile: File = prefsFolder.resolve("prefs.json")
 
     val defaultZlibDirectory: String = File(System.getProperty("user.home")).resolve("Desktop/").absolutePath
-    val zlibDirectory = SimpleStringProperty(defaultZlibDirectory)
+    val openZlibDirectory = SimpleStringProperty(defaultZlibDirectory)
+    val saveZlibDirectory = SimpleStringProperty(defaultZlibDirectory)
 
     fun loadFromStorage() {
         if (!prefsFile.exists()) {
@@ -21,7 +22,8 @@ class Settings(val app: Treasury) {
         try {
             val obj = JsonHandler.OBJECT_MAPPER.readTree(prefsFile)
 
-            zlibDirectory.set(obj["zlibDirectory"]?.asText() ?: defaultZlibDirectory)
+            openZlibDirectory.set(obj["openZlibDirectory"]?.asText() ?: defaultZlibDirectory)
+            saveZlibDirectory.set(obj["saveZlibDirectory"]?.asText() ?: defaultZlibDirectory)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -31,7 +33,8 @@ class Settings(val app: Treasury) {
         prefsFile.createNewFile()
         val json = JsonHandler.OBJECT_MAPPER.createObjectNode()
 
-        json.put("zlibDirectory", zlibDirectory.value)
+        json.put("openZlibDirectory", openZlibDirectory.value)
+        json.put("saveZlibDirectory", saveZlibDirectory.value)
 
         prefsFile.writeText(JsonHandler.OBJECT_MAPPER.writeValueAsString(json))
     }
