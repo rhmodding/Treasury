@@ -63,19 +63,36 @@ class Treasury : Application() {
             }
         }
     }
-
-
+    
     /**
      * Adds the base style + night mode listener
      */
     fun addBaseStyleToScene(scene: Scene) {
         (scene.window as? Stage?)?.icons?.setAll(windowIcons)
         scene.stylesheets += "style/main.css"
+        val nightStyle = "style/nightMode.css"
+        settings.nightModeProperty.addListener { _, _, newValue ->
+            if (newValue) {
+                if (nightStyle !in scene.stylesheets) scene.stylesheets += nightStyle
+            } else {
+                scene.stylesheets -= nightStyle
+            }
+        }
+        if (settings.nightMode) scene.stylesheets += nightStyle
     }
 
     fun addBaseStyleToDialog(dialogPane: DialogPane) {
         (dialogPane.scene.window as? Stage?)?.icons?.setAll(windowIcons)
         dialogPane.stylesheets += "style/main.css"
+        val nightStyle = "style/nightMode.css"
+        settings.nightModeProperty.addListener { _, _, newValue ->
+            if (newValue) {
+                if (nightStyle !in dialogPane.stylesheets) dialogPane.stylesheets += nightStyle
+            } else {
+                dialogPane.stylesheets -= nightStyle
+            }
+        }
+        if (settings.nightMode) dialogPane.stylesheets += nightStyle
     }
 
     fun addBaseStyleToAlert(alert: Alert) {

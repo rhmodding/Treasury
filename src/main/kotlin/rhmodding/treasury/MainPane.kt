@@ -1,6 +1,7 @@
 package rhmodding.treasury
 
 import com.sun.deploy.uitoolkit.impl.fx.HostServicesFactory
+import javafx.beans.binding.Bindings
 import javafx.beans.property.SimpleObjectProperty
 import javafx.event.EventHandler
 import javafx.geometry.Pos
@@ -93,6 +94,12 @@ class MainPane(val app: Treasury) : BorderPane() {
                         }
                     }
                 }
+            }
+        }
+
+        toolbar.menus += Menu("View").apply {
+            items += CheckMenuItem("Dark Mode").apply {
+                selectedProperty().bindBidirectional(app.settings.nightModeProperty)
             }
         }
         
