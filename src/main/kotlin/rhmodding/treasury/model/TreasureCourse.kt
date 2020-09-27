@@ -1,7 +1,5 @@
 package rhmodding.treasury.model
 
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import java.io.File
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -12,7 +10,7 @@ import kotlin.experimental.and
 class TreasureCourse(file: File) {
 	
 	companion object {
-		val COURSENAMES: List<String> = Gson().fromJson(this::class.java.classLoader.getResourceAsStream("coursenames.json")?.readBytes()?.toString(Charsets.UTF_8), object : TypeToken<List<String>>() {}.type)
+		val COURSENAMES: List<String> = listOf("Simplicity is Best", "Punch! Shoot! Smack!", "Bringing Topknots Back", "Aim True", "Group Activity", "Pattern Play", "A Tale of Dietary Fiber", "Monster Maw", "Master of the Delayed Response", "Game Gamble: Beginner", "The Soul of Japan", "All Singing, All Dancing", "Full-Belly Dojo", "Round-Object Fan Club", "Factory Tourism", "On the Job", "Getting Vocal", "Be a Good Sport", "Extreme Sports", "So Many Monkeys!", "Monster Maw 2", "Remix Medley", "Super Remix Medley", "That's Show Biz!", "Game Gamble: Intermediate", "All or Nothing!", "Demon Slayer", "Tales of Romance", "Karate Joe vs. the Monster", "Copycats", "Back And So Forth", "Group Activity 2", "Lockstep Lockdown", "Getting Vocal 2", "Spaaaaaaaaaaaaaaace!", "Rhythm Safari", "Hello, Ladies...", "Game Gamble: Advanced", "Wario...Where?", "Wario...Where? 2: The Sequel")
 	}
 	
 	var id: Short
@@ -67,6 +65,6 @@ class TreasureCourse(file: File) {
 
 data class CourseNumber(var id: Int) {
 	override fun toString(): String {
-		return """$id (${TreasureCourse.COURSENAMES[id.toInt()]})"""
+		return """$id (${TreasureCourse.COURSENAMES[id]})"""
 	}
 }

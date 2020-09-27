@@ -30,8 +30,7 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation 'no.tornado:tornadofx:1.7.20'
-    implementation "com.google.code.gson:gson:2.8.5"
+    implementation "no.tornado:tornadofx:1.7.20"
 }
 
 compileKotlin {
