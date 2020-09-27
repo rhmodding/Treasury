@@ -97,6 +97,17 @@ class MainPane(val app: Treasury) : BorderPane() {
         }
         
         toolbar.menus += Menu("About").apply {
+            items += MenuItem("Report a bug/problem").apply {
+                setOnAction {
+                    app.hostServices.showDocument("${Treasury.GITHUB}/issues/new")
+                }
+            }
+            items += MenuItem("Check for updates").apply {
+                setOnAction {
+                    app.hostServices.showDocument("${Treasury.GITHUB}/releases")
+                }
+            }
+            items += SeparatorMenuItem()
             this.items += MenuItem("About this program").apply {
                 this.onAction = EventHandler {
                     val alert = Alert(Alert.AlertType.INFORMATION)
