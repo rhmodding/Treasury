@@ -20,7 +20,7 @@ import kotlin.system.exitProcess
 
 class Treasury : Application() {
     companion object {
-        val VERSION: Version = Version(2, 0, 0, "DEVELOPMENT")
+        val VERSION: Version = Version(2, 0, 0, "")
         val LOGGER: Logger = Logger.getLogger("Treasury").apply {
             level = Level.FINE
         }
