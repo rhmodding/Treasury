@@ -76,9 +76,13 @@ class EditorPane(val app: Treasury, val treasureData: TreasureData) : BorderPane
                     styleClass += "grid-pane"
                     add(Label("Super Hard?:"), 0, 0)
                     add(coursesSuperHard, 1, 0)
-                    add(Label("Flow Ball reward:"), 0, 1)
-                    add(coursesFlowBalls.apply {
-                        styleClass += "short-spinner"
+                    add(Label("Reward:"), 0, 1)
+                    add(HBox().apply {
+                        styleClass.addAll("hbox", "hbox-centred")
+                        children += coursesFlowBalls.apply {
+                            styleClass += "short-spinner"
+                        }
+                        children += Label("Flow Balls")
                     }, 1, 1)
                     add(Label("Unknown:"), 0, 2)
                     add(coursesUnknownSpinner.apply {
