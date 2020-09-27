@@ -1,3 +1,5 @@
+<img align="right" src="icon.png" height="128" width="128">
+
 # Treasury
 
 A Challenge Train editor for Rhythm Heaven Megamix.
@@ -11,3 +13,5 @@ Requires Java 8u60 (or newer) to Java 10. Java 11 and newer not supported out of
 With a terminal in the same working directory as `treasury.jar`, run
 `java -jar treasury.jar`.
 
+## Other information
+Program icon made by [@theonetruegarbo](https://twitter.com/theonetruegarbo).
