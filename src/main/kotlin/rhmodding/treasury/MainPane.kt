@@ -39,7 +39,9 @@ class MainPane(val app: Treasury) : BorderPane() {
                 setOnAction {
                     val dirChooser = DirectoryChooser()
                     dirChooser.title = "Choose a directory containing the contents of treasure_world_data.zlib"
-                    dirChooser.initialDirectory = File(app.settings.openZlibDirectory.get())
+                    dirChooser.initialDirectory = File(app.settings.openZlibDirectory.get()).run { 
+                        if (!this.isDirectory) this.parentFile else this
+                    }
 
                     val f = dirChooser.showDialog(null)
                     if (f != null) {
@@ -77,7 +79,9 @@ class MainPane(val app: Treasury) : BorderPane() {
                     if (treasureData != null) {
                         val dirChooser = DirectoryChooser()
                         dirChooser.title = "Choose a directory to save your changes in"
-                        dirChooser.initialDirectory = File(app.settings.saveZlibDirectory.get())
+                        dirChooser.initialDirectory = File(app.settings.saveZlibDirectory.get()).run {
+                            if (!this.isDirectory) this.parentFile else this
+                        }
 
                         val f = dirChooser.showDialog(null)
                         if (f != null) {
