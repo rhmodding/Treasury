@@ -16,7 +16,7 @@ class Settings(val app: Treasury) {
     var nightMode: Boolean
         get() = nightModeProperty.value
         set(value) = nightModeProperty.set(value)
-    val defaultZlibDirectory: String = File(System.getProperty("user.home")).resolve("Desktop/").absolutePath
+    val defaultZlibDirectory: String = File(System.getProperty("user.home")).absolutePath
     val openZlibDirectory = SimpleStringProperty(defaultZlibDirectory)
     val saveZlibDirectory = SimpleStringProperty(defaultZlibDirectory)
 
